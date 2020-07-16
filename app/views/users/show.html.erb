@@ -2,14 +2,23 @@
 
 
     <div class="col-xl-8 col-md-8 col-sm-10 mx-auto my-auto">
+      <% if !flash[:notice].blank? %>
+      <div class="alert alert-success">
+        <strong>Success!</strong><%= flash[:notice] %>
+      </div>
+      <% end %>
 
         <!-- Profile widget -->
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 bg-dark">
                 <div class="media align-items-end profile-header">
                     <div class="profile mr-3">
-                      <%= image_tag("https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg", alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
-                      <%= link_to("Edit Profile", users_edit_path, class:"btn btn-dark btn-sm btn-block")%>
+                      <% if @user.avatar.attached? %>
+                      <%= image_tag(@user.avatar, alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
+                      <% else %>
+                      <%= image_tag("/amado/img/default-user.jpg", alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
+                      <% end %>
+                      <%= link_to("Edit Profile", users_edit_path(@user.id), class:"btn btn-dark btn-sm btn-block")%>
                     </div>
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-0"><%= @user.name %></h4>

@@ -53,15 +53,24 @@ class UsersController < ApplicationController
 
     def edit
       #show form for editing a user profile
-      @user = User.find(params[:id])
+      @user = User.find(params[:format])
     end
 
     def update
       #after editing profile this method update profile in database
-      @user = User.find(params[:id])
+      puts("###########################################################################################")
+      puts(params[:user][:delete_avatar])
+      puts("###########################################################################################")
+      @user = User.find(params[:format])
       if @user.update_attributes(user_params)
+        if params[:user][:delete_avatar] == "1"
+          @user.avatar.purge
+        elsif params[:avatar]
+          @user.avatar.purge
+          @user.avatar.attach(params[:avatar])
+        end
         flash[:notice] = 'Your Account has been updated successfully.'
-        redirect_to('')
+        redirect_to(user_show_path(@user))
       else
         render('edit')
       end
@@ -89,7 +98,9 @@ class UsersController < ApplicationController
         :email,
         :username,
         :password,
-        :password_confirmation
+        :password_confirmation,
+        :avatar,
+        :delete_avatar
       )
     end
 
