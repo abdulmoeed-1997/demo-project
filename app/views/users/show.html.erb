@@ -1,0 +1,49 @@
+
+
+
+    <div class="col-xl-8 col-md-8 col-sm-10 mx-auto my-auto">
+
+        <!-- Profile widget -->
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 bg-dark">
+                <div class="media align-items-end profile-header">
+                    <div class="profile mr-3">
+                      <%= image_tag("https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg", alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
+                      <%= link_to("Edit Profile", users_edit_path, class:"btn btn-dark btn-sm btn-block")%>
+                    </div>
+                    <div class="media-body mb-5 text-white">
+                        <h4 class="mt-0 mb-0"><%= @user.name %></h4>
+                        <p class="small mb-4"> <i class="fa fa fa-envelope-o mr-2"></i><%= @user.email %></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <%= link_to("Add New Product", "#", class: "btn btn-info btn-sm") %>
+            </div>
+
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Recent Products</h5><%= link_to("Show all", "#", class: "btn btn-link text-muted") %>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 mb-2 pr-lg-1">
+                      <a href="https://www.google.com">
+                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294928/nicole-honeywill-546848-unsplash_ymprvp.jpg", alt: "", class: "img-fluid rounded shadow-sm")%>
+                    </a>
+                  </div>
+                    <div class="col-lg-6 mb-2 pl-lg-1">
+                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg", alt: "", class: "img-fluid rounded shadow-sm") %>
+                    </div>
+                    <div class="col-lg-6 pr-lg-1 mb-2">
+                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294926/cody-davis-253925-unsplash_hsetv7.jpg", alt: "", class: "img-fluid rounded shadow-sm") %>
+                    </div>
+                    <div class="col-lg-6 pl-lg-1">
+                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg", alt:"", class:"img-fluid rounded shadow-sm") %>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End profile widget -->
+
+    </div>
