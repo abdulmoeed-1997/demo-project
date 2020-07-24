@@ -1,0 +1,39 @@
+<% discount ||= nil %>
+<% value ||= nil %>
+
+        <h5>Cart Total</h5>
+        <ul class="summary-table">
+            <li><span>subtotal:</span> <span>$<%= subtotal %></span></li>
+            <li><span>delivery:</span> <span>Free</span></li>
+            <% if discount != nil%>
+            <li><span>total:</span> <span>$<%= subtotal - discount %></span></li>
+            <% else %>
+            <li><span>total:</span> <span>$<%= subtotal %></span></li>
+            <% end %>
+        </ul>
+        <%= bootstrap_form_with(url: coupon_path,layout: :horizontal, method:"post") do |f| %>
+        <%= f.text_field :key, hide_label: true, placeholder: "Promo Code", required: true %>
+        <%= f.submit "Apply" %>
+        <% end %>
+
+        <%if !flash[:notice].blank?%>
+        <% if value != nil %>
+        <div class="alert alert-success">
+          <strong>Success!  </strong><%= "#{value} discount is added to your Total Bill" %>
+        </div>
+        <% else %>
+        <div class="alert alert-danger">
+          <strong>Sorry!  </strong> Wrong Promo/Coupon Code.
+        </div>
+        <% end %>
+        <%end%>
+
+        <% if @current_user.present? %>
+        <div class="cart-btn mt-100">
+            <%= link_to("Checkout", checkout_path, class:"btn amado-btn w-100") %>
+        </div>
+        <% else %>
+        <div class="cart-btn mt-100">
+              <%= link_to("Checkout", users_login_path(checkout: "1"), class:"btn amado-btn w-100") %>
+        </div>
+        <% end %>

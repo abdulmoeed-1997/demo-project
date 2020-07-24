@@ -1,0 +1,290 @@
+
+---
+active_storage_attachments:
+  columns:
+  - id
+  - name
+  - record_type
+  - record_id
+  - blob_id
+  - created_at
+  records: 
+  - - 2
+    - images
+    - Product
+    - 1
+    - 2
+    - 2020-07-20 11:01:06.559759000 Z
+  - - 3
+    - images
+    - Product
+    - 1
+    - 3
+    - 2020-07-20 11:01:06.565133000 Z
+  - - 4
+    - images
+    - Product
+    - 2
+    - 4
+    - 2020-07-20 11:04:00.421916000 Z
+  - - 5
+    - images
+    - Product
+    - 2
+    - 5
+    - 2020-07-20 11:04:00.428044000 Z
+  - - 6
+    - images
+    - Product
+    - 2
+    - 6
+    - 2020-07-20 11:04:00.434807000 Z
+  - - 7
+    - images
+    - Product
+    - 2
+    - 7
+    - 2020-07-20 11:04:00.441196000 Z
+  - - 8
+    - images
+    - Product
+    - 3
+    - 8
+    - 2020-07-20 11:05:33.999643000 Z
+  - - 9
+    - images
+    - Product
+    - 3
+    - 9
+    - 2020-07-20 11:05:34.011180000 Z
+  - - 10
+    - images
+    - Product
+    - 3
+    - 10
+    - 2020-07-20 11:05:34.018172000 Z
+  - - 11
+    - images
+    - Product
+    - 3
+    - 11
+    - 2020-07-20 11:05:34.023291000 Z
+
+---
+active_storage_blobs:
+  columns:
+  - id
+  - key
+  - filename
+  - content_type
+  - metadata
+  - byte_size
+  - checksum
+  - created_at
+  records: 
+  - - 2
+    - r33tr5ri81zvi66ipdnejmy9m035
+    - 1.jpg
+    - image/jpeg
+    - '{"identified":true,"width":659,"height":690,"analyzed":true}'
+    - 88563
+    - 4jfh+JFgrTmtP9/wPe05Eg==
+    - 2020-07-20 11:01:06.557010000 Z
+  - - 3
+    - rs8d463ouwpx1ozbeeuu7w4kuty6
+    - nokia_5_3-front-cyan.png
+    - image/png
+    - '{"identified":true,"width":3000,"height":3000,"analyzed":true}'
+    - 3432603
+    - nAN29iJVYpghNeXjJcFJvg==
+    - 2020-07-20 11:01:06.562579000 Z
+  - - 4
+    - t4i7cbju9zawmc1z1yczsd0ud9a0
+    - sofa1.jpeg
+    - image/jpeg
+    - '{"identified":true,"width":1000,"height":667,"analyzed":true}'
+    - 56287
+    - NCc9avzOTslg1wKgtU2zog==
+    - 2020-07-20 11:04:00.418016000 Z
+  - - 5
+    - 5vkgf2mwny5804t6y8dg0b7wtxkl
+    - sofa2.jpg
+    - image/jpeg
+    - '{"identified":true,"width":700,"height":466,"analyzed":true}'
+    - 21584
+    - mVq5iS7sXgPffhx0PoiFOQ==
+    - 2020-07-20 11:04:00.425738000 Z
+  - - 6
+    - t96xfjjj18t48dflxe3vqldnadsb
+    - sofa4.jpeg
+    - image/jpeg
+    - '{"identified":true,"width":1000,"height":727,"analyzed":true}'
+    - 88792
+    - cP3PLue6p1z9sflABSgTcQ==
+    - 2020-07-20 11:04:00.431751000 Z
+  - - 7
+    - x5xm8kszywmkghnmdu29z0bgsmwn
+    - sofa5.jpg
+    - image/jpeg
+    - '{"identified":true,"width":1080,"height":796,"analyzed":true}'
+    - 75708
+    - A3sI4K+QKSpJ8Tn3JRNyEw==
+    - 2020-07-20 11:04:00.438402000 Z
+  - - 8
+    - 0rqss7supziyk9fvk2twh65qyhzb
+    - 1.jpg
+    - image/jpeg
+    - '{"identified":true,"width":470,"height":556,"analyzed":true}'
+    - 24952
+    - DHRPgnVRP6PwNeAdEdXzBg==
+    - 2020-07-20 11:05:33.994970000 Z
+  - - 9
+    - 6okot6dit7stve78393t54v9nd7q
+    - 2.jpg
+    - image/jpeg
+    - '{"identified":true,"width":500,"height":500,"analyzed":true}'
+    - 33587
+    - PnZiVPpbly2b0gPnedCKfA==
+    - 2020-07-20 11:05:34.003175000 Z
+  - - 10
+    - j4siil20if409ukamy846emnrzsb
+    - 3.jpg
+    - image/jpeg
+    - '{"identified":true,"width":500,"height":500,"analyzed":true}'
+    - 12752
+    - 6noCCyDK+NsoYEysxCLpFQ==
+    - 2020-07-20 11:05:34.015455000 Z
+  - - 11
+    - mc7l8rqc6bigoewd6f0gohwmn9fk
+    - 4.jpg
+    - image/jpeg
+    - '{"identified":true,"width":500,"height":500,"analyzed":true}'
+    - 36015
+    - 9iOryZMxE+lIuXbdNJ0new==
+    - 2020-07-20 11:05:34.021031000 Z
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - 2020-07-20 10:53:39.886834000 Z
+    - 2020-07-20 10:53:39.886834000 Z
+  - - schema_sha1
+    - 38716a212ae0cdfe49aecdcd795b3460ef360e49
+    - 2020-07-20 10:53:39.904890000 Z
+    - 2020-07-20 10:54:22.789551000 Z
+
+---
+categories:
+  columns:
+  - id
+  - category_type
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Electronics
+    - 2020-07-20 10:58:57.270115000 Z
+    - 2020-07-20 10:58:57.270115000 Z
+  - - 2
+    - TV & Home Appliances
+    - 2020-07-20 10:59:16.252375000 Z
+    - 2020-07-20 10:59:16.252375000 Z
+  - - 3
+    - Mobile Phones
+    - 2020-07-20 10:59:26.097326000 Z
+    - 2020-07-20 10:59:26.097326000 Z
+  - - 4
+    - Fashion
+    - 2020-07-20 10:59:35.694562000 Z
+    - 2020-07-20 10:59:35.694562000 Z
+  - - 5
+    - Watches and Bags
+    - 2020-07-20 10:59:46.715790000 Z
+    - 2020-07-20 10:59:46.715790000 Z
+  - - 6
+    - Groceries
+    - 2020-07-20 11:00:09.033140000 Z
+    - 2020-07-20 11:00:09.033140000 Z
+  - - 7
+    - Funitures
+    - 2020-07-20 11:03:02.997585000 Z
+    - 2020-07-20 11:03:02.997585000 Z
+
+---
+products:
+  columns:
+  - id
+  - name
+  - description
+  - price
+  - user_id
+  - category_id
+  - serial_no
+  - quantity
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Nokia 3.3
+    - "OS\tAndroid 9.0 (Pie); Android One\r\nChipset\tQualcomm SDM429 Snapdragon 429\r\nCPU\tQuad-core
+      1.8 GHz Cortex-A53\r\nGPU\tAdreno 504\r\n"
+    - 199
+    - 1
+    - 3
+    - PSN-01
+    - 1
+    - 2020-07-20 11:01:06.501106000 Z
+    - 2020-07-20 11:01:06.567697000 Z
+  - - 2
+    - Uni Classic Sofa (Green)
+    - "Elegant and modern design at an affordable price\r\nAvailable in a range of
+      colors\r\nExtra thick foam cushion for optimum comfort"
+    - 56
+    - 1
+    - 7
+    - PSN-02
+    - 7
+    - 2020-07-20 11:04:00.362110000 Z
+    - 2020-07-20 11:04:00.443413000 Z
+  - - 3
+    - M-5 Watch
+    - "100% brand new and high quality\r\n0.96inch IPS color screen display, clear
+      to see even under sunlight\r\nSports and health: Sports step (3D sensor), calorie
+      consumption, exercise distance, pedometer"
+    - 19
+    - 1
+    - 5
+    - PSN-03
+    - 6
+    - 2020-07-20 11:05:33.986263000 Z
+    - 2020-07-20 11:05:34.025275000 Z
+
+---
+users:
+  columns:
+  - id
+  - first_name
+  - last_name
+  - username
+  - email
+  - password_digest
+  - active
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - test
+    - one
+    - test-one
+    - test1@test.com
+    - "$2a$12$QbVwGHQW8JA8S4fGaTaagOYN2su1ioaQCe5lW1rMH8mMSdcd.8pBm"
+    - true
+    - 2020-07-20 10:55:37.005775000 Z
+    - 2020-07-20 10:55:37.108799000 Z

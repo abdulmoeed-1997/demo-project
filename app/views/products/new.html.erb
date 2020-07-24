@@ -1,0 +1,35 @@
+
+<div class="mt-50 mb-50 col-sm-offset-6 col-sm-6">
+      <h3 style="margin-left: 30%;  " class="mb-40">Add Your New Product <small style="color:orange;">here!</small></h3>
+<%= bootstrap_form_for(@product, url: product_path(current_user)) do |f| %>
+
+  <%= f.text_field :name,
+            placeholder: 'name of your product',
+            class: 'form-control' %>
+
+  <%= f.text_area :description,
+            placeholder: 'describe about your Product in detail ',
+            class: 'form-control' %>
+
+  <%= f.select :category_id, @categories.map {|c| [c.category_type, c.id]},
+                        { label: "Choose Your Product Category:", class: "my-1 mr-2",
+                        wrapper: { class: 'form-inline'} },
+                        { class: " my-1 mr-sm-4" }
+                         %>
+
+  <%= f.number_field :price,
+	           placeholder: 'price of your product',
+	           class: 'form-control',
+             min: 0 %>
+
+  <%= f.number_field :quantity,
+                       placeholder: '',
+                       class: 'form-control',
+                       min: 0 %>
+
+  <%= f.file_field :images, multiple: true %>
+
+  <%= f.submit 'Add Product', class: 'btn btn-warning sign-up-button' %>
+
+<% end %>
+</div>

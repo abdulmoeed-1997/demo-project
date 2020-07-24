@@ -1,9 +1,9 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
 
 <div class="mt-50 mb-50 col-sm-offset-6 col-sm-6">
       <h3 style="margin-left: 30%;  " class="mb-40">Sign up <small style="color:orange;">it's free!</small></h3>
-
-<%= bootstrap_form_for(@user,
+ <%= bootstrap_form_for(@user,
                        :as => @user,
                        :url => users_create_path(@user)) do |f| %>
 

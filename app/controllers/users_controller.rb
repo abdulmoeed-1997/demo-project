@@ -2,6 +2,9 @@ class UsersController < ApplicationController
 
     def login
       #show user to login page
+      if params[:checkout].present?
+        session[:checkout] = 1
+      end
     end
 
     def attempt_login
@@ -15,8 +18,12 @@ class UsersController < ApplicationController
       if authorized_user
         session[:user_id] = authorized_user.id
         session[:username] = authorized_user.username
+        if session[:checkout]
+          session[:checkout] = nil
+          redirect_to(assign_cart_to_user_path) and return
+        end
         flash[:notice] = "You are now logged in."
-        redirect_to(users_login_path)
+        redirect_to(home_path)
       else
         flash.now[:error] = "username and password mismatched."
         render('login')
@@ -40,6 +47,8 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       if @user.save
         flash[:notice] = 'Your Account has been Created.Please login to continue.'
+        #create a empty shopping_cart object in database for every new user
+        @shoppingcart = ShoppingCart.create(user_id: @user.id)
         redirect_to(users_login_path)
       else
         render('new')
@@ -58,9 +67,9 @@ class UsersController < ApplicationController
 
     def update
       #after editing profile this method update profile in database
-      puts("###########################################################################################")
-      puts(params[:user][:delete_avatar])
-      puts("###########################################################################################")
+      #puts("###########################################################################################")
+      #puts(params[:user][:delete_avatar])
+      #puts("###########################################################################################")
       @user = User.find(params[:format])
       if @user.update_attributes(user_params)
         if params[:user][:delete_avatar] == "1"

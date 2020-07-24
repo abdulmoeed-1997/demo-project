@@ -23,15 +23,19 @@
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-0"><%= @user.name %></h4>
                         <p class="small mb-4"> <i class="fa fa fa-envelope-o mr-2"></i><%= @user.email %></p>
-                    </div>
+                      </div>
+
                 </div>
+
             </div>
 
-            <div class="bg-light p-4 d-flex justify-content-end text-center">
-                <%= link_to("Add New Product", "#", class: "btn btn-info btn-sm") %>
-            </div>
+
 
             <div class="py-4 px-4">
+              <div class=" p-4 d-flex justify-content-end text-center">
+                <%= link_to("Add New Product", new_product_path, class: "btn btn-info btn-sm") %>
+
+                      </div>
                 <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5 class="mb-0">Recent Products</h5><%= link_to("Show all", "#", class: "btn btn-link text-muted") %>
                 </div>
