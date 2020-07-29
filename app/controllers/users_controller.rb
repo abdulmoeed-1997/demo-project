@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+    before_action :confirm_logged_in, :only => [:show, :edit, :update, :destroy]
 
     def login
       #show user to login page
+      if @current_user
+        redirect_to(home_path) and return
+      end
       if params[:checkout].present?
         session[:checkout] = 1
       end
@@ -57,20 +61,17 @@ class UsersController < ApplicationController
 
     def show
       #show profile of a user
-      @user = User.find(params[:format])
+        @user = @current_user
+        @products = @user.products.last(6)
     end
 
     def edit
       #show form for editing a user profile
-      @user = User.find(params[:format])
+      @user = @current_user
     end
 
     def update
-      #after editing profile this method update profile in database
-      #puts("###########################################################################################")
-      #puts(params[:user][:delete_avatar])
-      #puts("###########################################################################################")
-      @user = User.find(params[:format])
+      @user = @current_user
       if @user.update_attributes(user_params)
         if params[:user][:delete_avatar] == "1"
           @user.avatar.purge
@@ -85,17 +86,15 @@ class UsersController < ApplicationController
       end
     end
 
-    #def delete
-    #  #show confirmation message to user for deleting his profile
-    #  @user = User.find(params[:id])
-    #end
 
     def destroy
       #delete user from database
-      @user = User.find(params[:id])
+      @user = @current_user
       @user.destroy
+      session[:user_id] = nil
+      session[:username] =nil
       flash[:notice] = "Your Account has been removed successfully."
-      redirect_to('')
+      redirect_to(users_signup_path)
     end
 
     private

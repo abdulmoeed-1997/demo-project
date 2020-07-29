@@ -18,7 +18,7 @@
                     <ol class="breadcrumb mt-50">
                         <li class="breadcrumb-item"> <%= link_to("Home", home_path) %> </li>
                       <li class="breadcrumb-item"> <%= link_to("Products", products_path) %> </li>
-                        <li class="breadcrumb-item"><a href="#"> <%= product_category_name(@product.category_id) %> </a></li>
+                        <li class="breadcrumb-item"><a href=<%=products_path(category_id: @product.category_id) %>> <%= product_category_name(@product.category_id) %> </a></li>
                         <li class="breadcrumb-item active" aria-current="page"> <%= @product.name %> </li>
                     </ol>
                 </nav>
@@ -105,19 +105,7 @@
                         <a href="product-details.html">
                             <h6> <%= @product.name %> </h6>
                         </a>
-                        <!-- Ratings & Review -->
-                        <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
-                            <div class="ratings">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </div>
-                            <div class="review">
-                                <a href="#">Write A Review</a>
-                            </div>
-                        </div>
+
                         <!-- Avaiable -->
                         <% if @product.quantity > 0 %>
                         <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
@@ -130,24 +118,47 @@
                         <p> <%= @product.description %> </p>
                     </div>
 
-                    <!-- Add to Cart Form -->
-                    <%= form_with(url: shopping_carts_path, class:"cart clearfix", local: true) do |form| %>
-                        <div class="cart-btn d-flex mb-50">
-                            <p>Qty</p>
-                            <div class="quantity">
-                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                <%= hidden_field_tag(:product_id, @product.id) %>
-                                <input type="number" class="qty-text" id="qty" step="1" min="1" max=<%= @product.quantity %> name="quantity" value="1">
+                    <% if @current_user %>
+                      <% if @current_user.id != @product.user.id %>
+                      <!-- Add to Cart Form -->
+                          <%= render 'load_cart_form', product: @product%>
+                      <% else %>
+                            <%= link_to("Edit ", edit_product_path(@product), class:"btn btn-primary") %>
+                            <%= link_to("Delete ", product_path(@product),
+                                          class:"btn btn-warning", method: :delete,
+                                          data: { confirm: 'Are you sure?' })%>
+                      <% end %>
+                    <% else %>
+                            <%= render 'load_cart_form', product: @product%>
+                    <% end %>
 
-                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                            </div>
-                        </div>
-                          <%= form.submit "Add to cart", class:"btn btn-warning btn-lg" %>
-                    <%end%>
 
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6 col-md-offset-2 col-sm-12">
+            <div class="comment-wrapper">
+                <div class="panel panel-info ">
+                    <div class="panel-heading">
+                        Comments
+                    </div>
+                    <div class="panel-body">
+                      <% if @current_user && @current_user.id != @product.user.id %>
+                        <%= render 'comments/add_comments', id: @product.id %>
+                      <% end %>
+                        <ul class="media-list" id="comment-area">
+                        <%= render 'comments/load_comments', comments: @comments %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
+
 <!-- Product Details Area End -->

@@ -1,0 +1,35 @@
+
+  <!-- Button to Open the Modal
+  <button type="button" id="modal-btn" data-toggle="modal" data-target="#myModal">
+
+  </button> -->
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Your Comment</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <%= bootstrap_form_for(comment, url:comment_path(comment), remote: true) do |f| %>
+        <div class="modal-body">
+
+          <%= f.text_area :content,
+                      label: "Comment"%>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          <%= f.submit "Edit", class:"btn btn-primary btn-sm" %>
+
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

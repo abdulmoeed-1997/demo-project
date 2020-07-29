@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many_attached :images
   has_many :cart_items
+  has_many :comments
 
   attr_accessor :delete_images
 

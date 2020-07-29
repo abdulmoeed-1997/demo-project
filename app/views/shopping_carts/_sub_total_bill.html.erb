@@ -28,9 +28,10 @@
         <% end %>
         <%end%>
 
+
         <% if @current_user.present? %>
         <div class="cart-btn mt-100">
-            <%= link_to("Checkout", checkout_path, class:"btn amado-btn w-100") %>
+            <%= link_to("Checkout", checkout_create_path, class:"btn amado-btn w-100", remote: true, method: "post") %>
         </div>
         <% else %>
         <div class="cart-btn mt-100">

@@ -58,11 +58,8 @@ class ShoppingCartsController < ApplicationController
       @guest_shopping_cart.user = @current_user
       @guest_shopping_cart.save
       session[:shopping_cart] = nil
-      redirect_to(checkout_path)
+      redirect_to(shopping_carts_path)
     end
-  end
-
-  def checkout
   end
 
 

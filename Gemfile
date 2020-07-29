@@ -5,7 +5,7 @@ ruby '2.7.0'
 
 #Bndle for adding Bootstrap
 #gem 'bootstrap-sass', '>=4.0.0'
-
+gem 'stripe'
 gem 'bootstrap_form'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'

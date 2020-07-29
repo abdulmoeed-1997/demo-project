@@ -38,7 +38,9 @@
   <%= f.submit 'Update', class: 'btn btn-warning sign-up-button' %>
 
 <% end %>
-
+<%= link_to("Delete My Account", users_destroy_path,
+              class:"btn btn-danger", method: :delete,
+              data: { confirm: 'Are you sure?' })%>
 <script type="text/javascript">
 
   $(document).on('change', '.custom-file-input', function(e) {

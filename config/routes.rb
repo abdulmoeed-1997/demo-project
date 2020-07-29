@@ -12,13 +12,20 @@ Rails.application.routes.draw do
   patch  'users/update'
   delete 'users/destroy'
 
+  resources :comments, only: [:create, :edit, :destroy, :update]
+
   resource :product
   get 'products/', to: 'products#index', as: 'products'
+  #post 'add/comment', to: 'products#create_comment', as: 'add_comments'
 
   resources :shopping_carts, only: [:index, :create, :destroy, :update]
   post 'shopping_cart/apply-coupon', to:'shopping_carts#get_coupon_value', as: 'coupon'
   get 'shopping_cart/assign_cart_to_user', to:'shopping_carts#assign_cart_to_user', as: 'assign_cart_to_user'
   get 'shopping_carts/checkout', as:'checkout'
 
+  scope '/checkout' do
+    post 'create', to:'checkout#create', as: 'checkout_create'
+    get 'success', to:'checkout#success', as: 'checkout_success'
+  end
 
 end

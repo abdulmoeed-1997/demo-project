@@ -1,7 +1,4 @@
-
-
-
-    <div class="col-xl-8 col-md-8 col-sm-10 mx-auto my-auto">
+<div class="col-xl-8 col-md-8 col-sm-10 mx-auto my-auto">
       <% if !flash[:notice].blank? %>
       <div class="alert alert-success">
         <strong>Success!</strong><%= flash[:notice] %>
@@ -18,7 +15,7 @@
                       <% else %>
                       <%= image_tag("/amado/img/default-user.jpg", alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
                       <% end %>
-                      <%= link_to("Edit Profile", users_edit_path(@user.id), class:"btn btn-dark btn-sm btn-block")%>
+                      <%= link_to("Edit Profile", users_edit_path, class:"btn btn-dark btn-sm btn-block")%>
                     </div>
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-0"><%= @user.name %></h4>
@@ -37,23 +34,33 @@
 
                       </div>
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Recent Products</h5><%= link_to("Show all", "#", class: "btn btn-link text-muted") %>
+                    <h5 class="mb-0">Recent Products</h5><%= link_to("Show all", products_path(user_id: @user.id), class: "btn btn-link text-muted") %>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 mb-2 pr-lg-1">
-                      <a href="https://www.google.com">
-                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294928/nicole-honeywill-546848-unsplash_ymprvp.jpg", alt: "", class: "img-fluid rounded shadow-sm")%>
-                    </a>
-                  </div>
-                    <div class="col-lg-6 mb-2 pl-lg-1">
-                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg", alt: "", class: "img-fluid rounded shadow-sm") %>
+                    <% if @products.count > 0 %>
+                    <% @products.each do |product|%>
+                      <div class="single-products-catagory clearfix m-10">
+                          <a href=<%= product_path(product.id) %>>
+                            <% if product.images.attached?%>
+                              <%= image_tag(product.images[0].variant(resize: '284.5x353.5!').processed) %>
+                              <%else%>
+                                <%= image_tag("/amado/img/product-img/product1.jpg", alt:"")%>
+                              <%end%>
+                              <!-- Hover Content -->
+                              <div class="hover-content">
+                                  <div class="line"></div>
+                                  <p>$<%= product.price %></p>
+                                  <h4><%= product.name %></h4>
+                              </div>
+                          </a>
                     </div>
-                    <div class="col-lg-6 pr-lg-1 mb-2">
-                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294926/cody-davis-253925-unsplash_hsetv7.jpg", alt: "", class: "img-fluid rounded shadow-sm") %>
+                    <% end %>
+                    <% else %>
+                    <div class="mx-auto">
+                      <h2>No Products</h2>
+
                     </div>
-                    <div class="col-lg-6 pl-lg-1">
-                      <%= image_tag("https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg", alt:"", class:"img-fluid rounded shadow-sm") %>
-                    </div>
+                    <% end %>
                 </div>
 
             </div>

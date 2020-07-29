@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :products
   has_one :shopping_cart
+  has_many :comments
 
 
   def name

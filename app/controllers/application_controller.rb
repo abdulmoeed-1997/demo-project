@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
+
     def confirm_logged_in
       unless session[:user_id]
         flash[:notice] = "Please Login before accessing any Page."
-        redirect_to(access_login_path)
+        redirect_to(users_login_path)
       end
     end
 end
