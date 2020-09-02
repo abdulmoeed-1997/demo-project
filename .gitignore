@@ -44,3 +44,7 @@
 yarn-debug.log*
 .yarn-integrity
 secret.text
+DockerFile
+docker-compose.yml
+# Ignore application configuration
+/config/application.yml

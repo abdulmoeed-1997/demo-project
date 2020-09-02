@@ -1,31 +1,38 @@
 Rails.application.routes.draw do
+  root 'homes#index', as: :home
 
-  root 'homes#index', as:'home'
-
-  get    'user/profile', :to => 'users#show', :as => 'user_show'
-  get    'users/login'
-  get    'users/logout'
-  post   'users/attempt_login'
-  get    'users/signup', :to => 'users#new' ,:as => 'users_signup'
-  get    'users/edit'
-  post   'users/create', :as => 'users_create'
-  patch  'users/update'
-  delete 'users/destroy'
+  resource :user do
+    collection do
+        get  :login
+        get  :logout
+        get  :products
+        post :attempt_login
+    end
+  end
 
   resources :comments, only: [:create, :edit, :destroy, :update]
+  
+  resources :products do
+    member do
+      delete :delete_image_attachment
+    end
+    collection do
+      get :search
+      get :category
+    end
+  end
 
-  resource :product
-  get 'products/', to: 'products#index', as: 'products'
-  #post 'add/comment', to: 'products#create_comment', as: 'add_comments'
+  resources :shopping_carts, only: [:index, :create, :destroy, :update] do
+    collection do
+      post :get_coupon_value
+      get  :assign_cart_to_user
+    end
+  end
 
-  resources :shopping_carts, only: [:index, :create, :destroy, :update]
-  post 'shopping_cart/apply-coupon', to:'shopping_carts#get_coupon_value', as: 'coupon'
-  get 'shopping_cart/assign_cart_to_user', to:'shopping_carts#assign_cart_to_user', as: 'assign_cart_to_user'
-  get 'shopping_carts/checkout', as:'checkout'
-
-  scope '/checkout' do
-    post 'create', to:'checkout#create', as: 'checkout_create'
-    get 'success', to:'checkout#success', as: 'checkout_success'
+  resources :checkout, only: [:create] do
+    collection do
+      get :success
+    end
   end
 
 end

@@ -1,69 +1,60 @@
 <div class="col-xl-8 col-md-8 col-sm-10 mx-auto my-auto">
-      <% if !flash[:notice].blank? %>
-      <div class="alert alert-success">
-        <strong>Success!</strong><%= flash[:notice] %>
+  <%= render 'layouts/flash_errors' %>
+  <!-- Profile widget -->
+  <div class="bg-white shadow rounded overflow-hidden">
+    <div class="px-4 pt-0 pb-4 bg-dark">
+      <div class="media align-items-end profile-header">
+        <div class="profile mr-3">
+
+          <% if @user.avatar.attached? %>
+            <%= image_tag(@user.avatar, alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
+          <% else %>
+            <%= image_tag("/amado/img/default-user.jpg", alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
+          <% end %>
+          
+          <%= link_to("Edit Profile", edit_user_path, class:"btn btn-dark btn-sm btn-block")%>
+        </div>
+        <div class="media-body mb-5 text-white">
+          <h4 class="mt-0 mb-0"><%= @user.name %></h4>
+          <p class="small mb-4"> <i class="fa fa fa-envelope-o mr-2"></i><%= @user.email %></p>
+        </div>
       </div>
-      <% end %>
-
-        <!-- Profile widget -->
-        <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 bg-dark">
-                <div class="media align-items-end profile-header">
-                    <div class="profile mr-3">
-                      <% if @user.avatar.attached? %>
-                      <%= image_tag(@user.avatar, alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
-                      <% else %>
-                      <%= image_tag("/amado/img/default-user.jpg", alt:"...", width:"130", class:"rounded mb-2 img-thumbnail")%>
-                      <% end %>
-                      <%= link_to("Edit Profile", users_edit_path, class:"btn btn-dark btn-sm btn-block")%>
-                    </div>
-                    <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0"><%= @user.name %></h4>
-                        <p class="small mb-4"> <i class="fa fa fa-envelope-o mr-2"></i><%= @user.email %></p>
-                      </div>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="py-4 px-4">
-              <div class=" p-4 d-flex justify-content-end text-center">
-                <%= link_to("Add New Product", new_product_path, class: "btn btn-info btn-sm") %>
-
-                      </div>
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Recent Products</h5><%= link_to("Show all", products_path(user_id: @user.id), class: "btn btn-link text-muted") %>
-                </div>
-                <div class="row">
-                    <% if @products.count > 0 %>
-                    <% @products.each do |product|%>
-                      <div class="single-products-catagory clearfix m-10">
-                          <a href=<%= product_path(product.id) %>>
-                            <% if product.images.attached?%>
-                              <%= image_tag(product.images[0].variant(resize: '284.5x353.5!').processed) %>
-                              <%else%>
-                                <%= image_tag("/amado/img/product-img/product1.jpg", alt:"")%>
-                              <%end%>
-                              <!-- Hover Content -->
-                              <div class="hover-content">
-                                  <div class="line"></div>
-                                  <p>$<%= product.price %></p>
-                                  <h4><%= product.name %></h4>
-                              </div>
-                          </a>
-                    </div>
-                    <% end %>
-                    <% else %>
-                    <div class="mx-auto">
-                      <h2>No Products</h2>
-
-                    </div>
-                    <% end %>
-                </div>
-
-            </div>
-        </div><!-- End profile widget -->
-
     </div>
+    <div class="py-4 px-4">
+      <div class=" p-4 d-flex justify-content-end text-center">
+        <%= link_to("Add New Product", new_product_path, class: "btn btn-info btn-sm") %>
+      </div>
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0">Recent Products</h5><%= link_to("Show all", products_path(user_id: @user.id), class: "btn btn-link text-muted") %>
+      </div>
+      <div class="row">
+        
+        <% if @products.count > 0 %>
+          <% @products.each do |product|%>
+           <div class="single-products-catagory clearfix m-10">
+            <a href=<%= product_path(product.id) %>>
+            
+            <% if product.images.attached?%>
+            <%= image_tag(product.images[0].variant(resize: '284.5x353.5!').processed) %>
+            <%else%>
+            <%= image_tag("/amado/img/product-img/product1.jpg", alt:"")%>
+            <%end%>
+            <!-- Hover Content -->
+            <div class="hover-content">
+              <div class="line"></div>
+              <p>$<%= product.price %></p>
+              <h4><%= product.name %></h4>
+            </div>
+          </a>
+        </div>
+        <% end %>
+        <% else %>
+        <div class="mx-auto">
+          <h2>No Products</h2>
+        </div>
+        <% end %>
+        
+      </div>
+    </div>
+    </div><!-- End profile widget -->
+  </div>

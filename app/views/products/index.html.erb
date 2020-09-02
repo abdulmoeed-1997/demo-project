@@ -3,50 +3,43 @@
     <div class="widget catagory mb-50">
         <!-- Widget Title -->
         <h6 class="widget-title mb-30">Catagories</h6>
-
         <!--  Catagories  -->
         <div class="catagories-menu">
             <ul>
-              <li><%= link_to("All", products_path) %></li>
-              <% @categories.each do |cat| %>
-                <li> <%= link_to(cat.category_type, products_path(category_id: cat.id)) %> </li>
-              <% end %>
-              </ul>
+                <li><%= link_to("All", products_path) %></li>
+                <% @categories.each do |cat| %>
+                <li> <%= link_to(cat.category_type, category_products_path(category_id: cat.id)) %> </li>
+                <% end %>
+            </ul>
         </div>
     </div>
-
 </div>
-
 <div class="amado_product_area section-padding-100">
     <div class="container-fluid">
-
         
-
         <div class="row">
-
             <% @products.each do |product| %>
             <!-- Single Product Area -->
             <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                 <div class="single-product-wrapper">
                     <!-- Product Image -->
                     <a href= <%= product_path(product.id) %> >
-                    <div class="product-img">
-                      <% if product.images.attached? %>
-
-                        <%= image_tag(product.images[0].variant(resize: '284.5x353.5!').processed) %>
-                        <% if product.images.count > 1 %>
-                        <!-- Hover Thumb -->
-                        <%= image_tag(product.images[1].variant(resize: '284.5x353.5!').processed, class:"hover-img", alt:"") %>
-                        <% end %>
-
-                        <% else %>
-                        <%= image_tag("/amado/img/product-img/product1.jpg", alt:"")%>
-                        <!-- Hover Thumb -->
-                        <%= image_tag("/amado/img/product-img/product2.jpg", class: "hover-img", alt:"") %>
-                        <% end %>
-                    </div>
+                        <div class="product-img">
+                            
+                            <% if product.images.attached? %>
+                            <%= image_tag(product.images[0].variant(resize: '284.5x353.5!').processed) %>
+                                <% if product.images.count > 1 %>
+                                    <!-- Hover Thumb -->
+                                    <%= image_tag(product.images[1].variant(resize: '284.5x353.5!').processed, class:"hover-img", alt:"") %>
+                                <% end %>
+                            <% else %>
+                                <%= image_tag("/amado/img/product-img/product1.jpg", alt:"")%>
+                                    <!-- Hover Thumb -->
+                                <%= image_tag("/amado/img/product-img/product2.jpg", class: "hover-img", alt:"") %>
+                            <% end %>
+                            
+                        </div>
                     </a>
-
                     <!-- Product Description -->
                     <div class="product-description d-flex align-items-center justify-content-between">
                         <!-- Product Meta Data -->
@@ -74,9 +67,7 @@
                 </div>
             </div>
             <% end %>
-
         </div>
-
         <div class="row">
             <div class="col-12">
                 <!-- Pagination -->

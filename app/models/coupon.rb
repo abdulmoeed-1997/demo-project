@@ -1,6 +1,5 @@
 class Coupon < ApplicationRecord
 
-  #validations
   validates :key, presence: true
 
   validates :value,

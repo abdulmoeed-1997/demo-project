@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   before_action :confirm_logged_in
 
   def create
@@ -16,6 +15,7 @@ class CommentsController < ApplicationController
   def update
     comment = Comment.find(params[:id])
     product = comment.product
+    
     if comment.update(content: params[:comment][:content])
       @comments = product.comments.last(5).reverse
     end
@@ -27,6 +27,5 @@ class CommentsController < ApplicationController
     comment.destroy
     @comments = product.comments.last(5).reverse
   end
-
 
 end

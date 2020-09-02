@@ -1,33 +1,33 @@
 <% if comments.count > 0 %>
 <% comments.each do |comment| %>
-    <li class="media">
-        <a href="#" class="pull-left">
-          <% if comment.user.avatar.attached? %>
-            <%= image_tag(comment.user.avatar.variant(resize: '64x64!').processed, class:"rounded-circle") %>
-            <% else %>
-              <%= image_tag("/amado/img/default-user.jpg", alt:"...", class:"rounded-circle") %>
-            <% end %>
-        </a>
-        <div class="media-body mx-2">
-            <span class="text-muted pull-right">
-                <small class="text-muted"><%=time_ago_in_words(comment.created_at) %>  ago</small>
-            </span>
-            <strong class="text-success">@<%=comment.user.name%></strong>
-            <p>
-              <%= comment.content %>
-            </p>
-        </div>
-        <% if @current_user && @current_user.id == comment.user_id%>
-        <%= link_to("Edit", edit_comment_path(comment), class:"btn btn-sm", remote: true) %>
-        <div id="load-edit-form">
-
-        </div>
-        <%= link_to("Delete", comment_path(comment),
-                      class:"btn btn-sm", method: :delete,
-                      remote: true,
-                      data: { confirm: 'Are you sure?' }) %>
-        <% end %>
-    </li>
-
+<li class="media">
+  <a href="#" class="pull-left">
+    
+    <% if comment.user.avatar.attached? %>
+      <%= image_tag(comment.user.avatar.variant(resize: '64x64!').processed, class:"rounded-circle") %>
+    <% else %>
+      <%= image_tag("/amado/img/default-user.jpg", alt:"...", class:"rounded-circle") %>
+    <% end %>
+  </a>
+  <div class="media-body mx-2">
+    <span class="text-muted pull-right">
+      <small class="text-muted"><%=time_ago_in_words(comment.created_at) %>  ago</small>
+    </span>
+    <strong class="text-success">@<%=comment.user.name%></strong>
+    <p>
+      <%= comment.content %>
+    </p>
+  </div>
+  
+  <% if @current_user && @current_user.id == comment.user_id%>
+    <%= link_to("Edit", edit_comment_path(comment), class:"btn btn-sm", remote: true) %>
+    <div id="load-edit-form">
+    </div>
+      <%= link_to("Delete", comment_path(comment),
+          class:"btn btn-sm", method: :delete,
+          remote: true,
+          data: { confirm: 'Are you sure?' }) %>
   <% end %>
-  <% end %>
+</li>
+<% end %>
+<% end %>

@@ -1,54 +1,50 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <div class="mt-50 mb-50 col-sm-offset-6 col-sm-6">
-      <h3 style="margin-left: 30%;  " class="mb-40">You Can Edit Your Profile <small style="color:orange;">here!</small></h3>
+  <h3 style="margin-left: 30%;  " class="mb-40">You Can Edit Your Profile <small style="color:orange;">here!</small></h3>
 
-<%= bootstrap_form_for(@user,
-                       :as => @user,
-                       :url => users_update_path(@user)) do |f| %>
+  <%= bootstrap_form_for(@user, url: user_path) do |f| %>
 
   <%= f.text_field :first_name,
-            placeholder: 'first name',
-            class: 'form-control' %>
+  placeholder: 'first name',
+  class: 'form-control' %>
 
   <%= f.text_field :last_name,
-            placeholder: 'last name',
-            class: 'form-control' %>
+  placeholder: 'last name',
+  class: 'form-control' %>
 
   <%= f.text_field :username,
-	           placeholder: 'username (will be shown publicly)',
-	           class: 'form-control' %>
+  placeholder: 'username (will be shown publicly)',
+  class: 'form-control' %>
 
   <%= f.text_field :email,
-	           placeholder: 'email',
-	           class: 'form-control' %>
+  placeholder: 'email',
+  class: 'form-control' %>
 
   <%= f.password_field :password,
-                       placeholder: 'password',
-                       class: 'form-control' %>
+  placeholder: 'password',
+  class: 'form-control' %>
 
   <%= f.file_field     :avatar%>
+  <div class="alert alert-success">
+    <span class="img"></span>
+  </div>
 
-                      <div class="alert alert-success">
-                        <span class="img"></span>
-                      </div>
-                      <%= f.form_group :delete_avatar do %>
-                        <%= f.check_box :delete_avatar, label: "Do you want to delete your avatar? " %>
-                      <% end %>
+  <%= f.form_group :delete_avatar do %>
+  <%= f.check_box :delete_avatar, label: "Do you want to delete your avatar? " %>
+  <% end %>
   <%= f.submit 'Update', class: 'btn btn-warning sign-up-button' %>
+  <% end %>
 
-<% end %>
-<%= link_to("Delete My Account", users_destroy_path,
-              class:"btn btn-danger", method: :delete,
-              data: { confirm: 'Are you sure?' })%>
-<script type="text/javascript">
+  <%= link_to("Delete My Account", user_path,
+  class:"btn btn-danger", method: :delete,
+  data: { confirm: 'Are you sure?' })%>
 
+  <script type="text/javascript">
   $(document).on('change', '.custom-file-input', function(e) {
   // split file path by back or forward slashes
   let path = this.value.split(/^.*[\\\/]/);
   $('.img').text(path.slice(-1));
-});
-
-</script>
-
+  });
+  </script>
 </div>

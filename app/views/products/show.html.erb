@@ -1,97 +1,95 @@
 <!-- Product Details Area Start -->
 <div class="single-product-area section-padding-100 clearfix">
-  <% if !flash[:notice].blank? %>
-  <div class="alert alert-success">
-    <strong>Success!</strong><%= flash[:notice] %>
-  </div>
-  <% end %>
-  <% if !flash[:error].blank? %>
-  <div class="alert alert-danger">
-    <strong>Sorry!  </strong><%= flash[:error] %>
-  </div>
-  <% end %>
+    <%= render 'layouts/flash_errors' %>
     <div class="container-fluid">
-
         <div class="row">
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-50">
                         <li class="breadcrumb-item"> <%= link_to("Home", home_path) %> </li>
-                      <li class="breadcrumb-item"> <%= link_to("Products", products_path) %> </li>
-                        <li class="breadcrumb-item"><a href=<%=products_path(category_id: @product.category_id) %>> <%= product_category_name(@product.category_id) %> </a></li>
+                        <li class="breadcrumb-item"> <%= link_to("Products", products_path) %> </li>
+                        <li class="breadcrumb-item">
+                            <a href=<%=category_products_path(category_id: @product.category_id) %>>
+                             <%= @product.category.category_type %> 
+                            </a>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page"> <%= @product.name %> </li>
                     </ol>
                 </nav>
             </div>
         </div>
-
         <div class="row">
             <div class="col-12 col-lg-7">
                 <div class="single_product_thumb">
                     <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                          <% if @product.images.attached? %>
-                            <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(<%= rails_blob_url(@product.images[0])%>);">
-                            </li>
-                              <% if @product.images.count > 1 %>
-                              <% count = 1 %>
-                                <% @product.images.each do |image| %>
-                                <% next if image == @product.images[0] %>
-                                  <li data-target="#product_details_slider" data-slide-to="<%= count %>" style="background-image: url(<%= rails_blob_url(image)%>);">
-                                  </li>
-                                  <% count = count +1 %>
-                                  <% end%>
-                              <% end %>
-                          <% else %>
-                            <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(/amado/img/product-img/pro-big-1.jpg);">
-                            </li>
-                            <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(/amado/img/product-img/pro-big-2.jpg);">
-                            </li>
-                            <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(/amado/img/product-img/pro-big-3.jpg);">
-                            </li>
-                            <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(/amado/img/product-img/pro-big-4.jpg);">
-                            </li>
-                          <% end %>
-                        </ol>
-                        <div class="carousel-inner">
-                          <% if @product.images.attached? %>
-                            <div class="carousel-item active">
-                                <%= link_to @product.images[0], class:"gallery_img" do %>
-                                      <%= image_tag(@product.images[0].variant(resize: '471.133x486.767!').processed, :class => "d-block w-100", :alt=>"Second slide") %>
-                                <% end %>
-                            </div>
-                              <% if @product.images.count > 1 %>
-                                <% @product.images.each do |image| %>
-                                <% next if image == @product.images[0] %>
-                                <div class="carousel-item">
-                                    <%= link_to image, class:"gallery_img" do %>
-                                        <%= image_tag(image.variant(resize: '471.133x486.767!').processed, :class => "d-block w-100", :alt=>"Second slide") %>
-                                    <% end %>
-                                  </div>
-                                  <% end %>
+                            
+                            <% if @product.images.attached? %>
+                                <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(<%= rails_blob_url(@product.images[0])%>);">
+                                </li>
+                                    <% if @product.images.count > 1 %>
+                                        <% count = 1 %>
+                                        <% @product.images.each do |image| %>
+                                        
+                                        <% next if image == @product.images[0] %>
+                                            <li data-target="#product_details_slider" data-slide-to="<%= count %>" style="background-image: url(<%= rails_blob_url(image)%>);">
+                                            </li>
+                                            <% count = count +1 %>
+                                        <% end%>
                                 <% end %>
                             <% else %>
-                            <div class="carousel-item active">
-                                <a class="gallery_img" href="/amado/img/product-img/pro-big-1.jpg">
-                                    <img class="d-block w-100" src="/amado/img/product-img/pro-big-1.jpg" alt="First slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="/amado/img/product-img/pro-big-2.jpg">
-                                    <img class="d-block w-100" src="/amado/img/product-img/pro-big-2.jpg" alt="Second slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="/amado/img/product-img/pro-big-3.jpg">
-                                    <img class="d-block w-100" src="/amado/img/product-img/pro-big-3.jpg" alt="Third slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="/amado/img/product-img/pro-big-4.jpg">
-                                    <img class="d-block w-100" src="/amado/img/product-img/pro-big-4.jpg" alt="Fourth slide">
-                                </a>
-                            </div>
+                                <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(/amado/img/product-img/pro-big-1.jpg);">
+                                </li>
+                                <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(/amado/img/product-img/pro-big-2.jpg);">
+                                </li>
+                                <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(/amado/img/product-img/pro-big-3.jpg);">
+                                </li>
+                                <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(/amado/img/product-img/pro-big-4.jpg);">
+                                </li>
                             <% end %>
+                        </ol>
+                        <div class="carousel-inner">
+                            
+                            <% if @product.images.attached? %>
+                            <div class="carousel-item active">
+                                <%= link_to @product.images[0], class:"gallery_img" do %>
+                                <%= image_tag(@product.images[0].variant(resize: '471.133x486.767!').processed, :class => "d-block w-100", :alt=>"Second slide") %>
+                                <% end %>
+                            </div>
+                            
+                            <% if @product.images.count > 1 %>
+                                <% @product.images.each do |image| %>
+                            
+                                <% next if image == @product.images[0] %>
+                                    <div class="carousel-item">
+                                    <%= link_to image, class:"gallery_img" do %>
+                                    <%= image_tag(image.variant(resize: '471.133x486.767!').processed, :class => "d-block w-100", :alt=>"Second slide") %>
+                                <% end %>
+                                </div>
+                            <% end %>
+                            <% end %>
+                            <% else %>
+                                <div class="carousel-item active">
+                                    <a class="gallery_img" href="/amado/img/product-img/pro-big-1.jpg">
+                                        <img class="d-block w-100" src="/amado/img/product-img/pro-big-1.jpg" alt="First slide">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="gallery_img" href="/amado/img/product-img/pro-big-2.jpg">
+                                        <img class="d-block w-100" src="/amado/img/product-img/pro-big-2.jpg" alt="Second slide">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="gallery_img" href="/amado/img/product-img/pro-big-3.jpg">
+                                        <img class="d-block w-100" src="/amado/img/product-img/pro-big-3.jpg" alt="Third slide">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="gallery_img" href="/amado/img/product-img/pro-big-4.jpg">
+                                        <img class="d-block w-100" src="/amado/img/product-img/pro-big-4.jpg" alt="Fourth slide">
+                                    </a>
+                                </div>
+                                <% end %>
                         </div>
                     </div>
                 </div>
@@ -105,39 +103,35 @@
                         <a href="product-details.html">
                             <h6> <%= @product.name %> </h6>
                         </a>
-
                         <!-- Avaiable -->
                         <% if @product.quantity > 0 %>
-                        <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
-                        <% else %>
-                        <p class="avaibility"><i class="fa fa-circle" style="color:#d32020" ></i> Out of Stock </p>
-                        <% end%>
-                    </div>
-
-                    <div class="short_overview my-5">
-                        <p> <%= @product.description %> </p>
-                    </div>
-
+                            <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                            <% else %>
+                            <p class="avaibility"><i class="fa fa-circle" style="color:#d32020" ></i> Out of Stock </p>
+                            <% end%>
+                        </div>
+                        <div class="short_overview my-5">
+                            <p> <%= @product.description %> </p>
+                        </div>
+                    
                     <% if @current_user %>
-                      <% if @current_user.id != @product.user.id %>
-                      <!-- Add to Cart Form -->
-                          <%= render 'load_cart_form', product: @product%>
-                      <% else %>
-                            <%= link_to("Edit ", edit_product_path(@product), class:"btn btn-primary") %>
-                            <%= link_to("Delete ", product_path(@product),
-                                          class:"btn btn-warning", method: :delete,
-                                          data: { confirm: 'Are you sure?' })%>
-                      <% end %>
+                    
+                    <% if @current_user.id != @product.user.id %>
+                        <!-- Add to Cart Form -->
+                        <%= render 'load_cart_form', product: @product%>
                     <% else %>
-                            <%= render 'load_cart_form', product: @product%>
+                        <%= link_to("Edit ", edit_product_path(@product), class:"btn btn-primary") %>
+                        <%= link_to("Delete ", product_path(@product),
+                            class:"btn btn-warning", method: :delete,
+                            data: { confirm: 'Are you sure?' })%>
                     <% end %>
-
-
+                    <% else %>
+                        <%= render 'load_cart_form', product: @product%>
+                    <% end %>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="row mt-5">
         <div class="col-md-6 col-md-offset-2 col-sm-12">
             <div class="comment-wrapper">
@@ -146,19 +140,17 @@
                         Comments
                     </div>
                     <div class="panel-body">
-                      <% if @current_user && @current_user.id != @product.user.id %>
-                        <%= render 'comments/add_comments', id: @product.id %>
-                      <% end %>
+                        
+                        <% if @current_user && @current_user.id != @product.user.id %>
+                            <%= render 'comments/add_comments', id: @product.id %>
+                        <% end %>
                         <ul class="media-list" id="comment-area">
-                        <%= render 'comments/load_comments', comments: @comments %>
+                            <%= render 'comments/load_comments', comments: @comments %>
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
-
-<!-- Product Details Area End -->
+<!-- Product Details Area End -->s

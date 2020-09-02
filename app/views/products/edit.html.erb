@@ -1,47 +1,42 @@
-
 <div class="mt-50 mb-50 col-sm-offset-6 col-sm-6">
-      <h3 style="margin-left: 30%;  " class="mb-40">Edit Your Product <small style="color:orange;">here!</small></h3>
-<%= bootstrap_form_for(@product, url:product_path(@product)) do |f| %>
+  <h3 style="margin-left: 30%;  " class="mb-40">Edit Your Product <small style="color:orange;">here!</small></h3>
 
+  <%= bootstrap_form_for(@product) do |f| %>
+  
   <%= f.text_field :name,
-            placeholder: 'name of your product',
-            class: 'form-control' %>
-
+  placeholder: 'name of your product',
+  class: 'form-control' %>
+  
   <%= f.text_area :description,
-            placeholder: 'describe about your Product in detail ',
-            class: 'form-control' %>
-
+  placeholder: 'describe about your Product in detail ',
+  class: 'form-control' %>
+  
   <%= f.select :category_id, @categories.map {|c| [c.category_type, c.id]},
-                        { label: "Choose Your Product Category:", class: "my-1 mr-2",
-                        wrapper: { class: 'form-inline'} },
-                        { class: " my-1 mr-sm-4" }
-                         %>
-
+  { label: "Choose Your Product Category:", class: "my-1 mr-2",
+  wrapper: { class: 'form-inline'} },
+  { class: " my-1 mr-sm-4" }
+  %>
+  
   <%= f.number_field :price,
-	           placeholder: 'price of your product',
-	           class: 'form-control',
-             min: 0 %>
-
+  placeholder: 'price of your product',
+  class: 'form-control',
+  min: 0 %>
+  
   <%= f.number_field :quantity,
-                       placeholder: '',
-                       class: 'form-control',
-                       min: 0 %>
-
+  placeholder: '',
+  class: 'form-control',
+  min: 0 %>
+  
   <%= f.file_field :images, multiple: true %>
-
-<!--  <div class="col-sm-8" data-toggle="tooltip" data-placement="right" title="This will delete your previous images and add new images(if provided?).">
-    <%= f.form_group :delete_images do %>
-      <%= f.check_box :delete_images, label: "Do you want to update your images? " %>
-      <% end %>
-  </div> -->
-
+  <span id="images-area">
+    <%= render 'delete_images_form', product: @product%>
+  </span>
   <%= f.submit 'Update Product', class: 'btn btn-warning sign-up-button' %>
-
-<% end %>
+  <% end %>
 </div>
 <!--
 <script>
 $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
+$('[data-toggle="tooltip"]').tooltip();
 });
 </script> -->
